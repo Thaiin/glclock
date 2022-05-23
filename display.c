@@ -1,11 +1,16 @@
 #include "wintime.h"
 
 void Display(void){
-    glClear(GL_COLOR_BUFFER_BIT);
+    int w = glutGet(GLUT_WINDOW_WIDTH);
+    int h = glutGet(GLUT_WINDOW_HEIGHT);
 
     clocktime();
-    glClockHands(glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClockCircle(w, h);
+    glClockHands(w, h);
     glFlush();
+    // glutSwapBuffers();
 }
 
 void Reshape(int w, int h){

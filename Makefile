@@ -4,7 +4,8 @@ TARGET = clock.exe
 
 SRCS = display.c \
 	clock.c \
-	main.c
+	main.c \
+	shape.c \
 
 OBJS = ${SRCS:.c=.o}
 

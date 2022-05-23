@@ -5,6 +5,7 @@
 #include <math.h>
 
 #define DAYSIZE 3 + 1
+#define SQ 360
 
 typedef struct weekday{
 	int hour12;
@@ -19,6 +20,7 @@ WEEKDAY wd;
 void weekdayreturn(WEEKDAY *);
 void clocktime();
 void glClockHands(int, int);
+void glClockCircle(int, int);
 
 void Display(void);
 void Reshape(int, int);
