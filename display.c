@@ -10,12 +10,11 @@ void Display(void){
     glClockCircle(w, h);
     glClockHands(w, h);
     glFlush();
-    // glutSwapBuffers();
+    glutSwapBuffers();
 }
 
 void Reshape(int w, int h){
-    printf("window: width*height = %d x %d\n", w, h);
-
+    // printf("window: width*height = %d x %d\n", w, h);
     glViewport(0, 0, w, h);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

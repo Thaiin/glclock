@@ -5,9 +5,12 @@ TARGET = clock.exe
 SRCS = display.c \
 	clock.c \
 	main.c \
-	shape.c \
+	shape.c 
 
-OBJS = ${SRCS:.c=.o}
+SRCSRC = clockicon.rc
+
+OBJS = ${SRCS:.c=.o} \
+	clockicon.o
 
 HEADERS = wintime.h
 
@@ -18,33 +21,37 @@ HEADERS = wintime.h
 # LDFLAGS = 
 # LIBS = -lm -lglpng -lglut -lGLU -lGL
 
-# windows
+# $(TARGET) : $(OBJS)
+# 	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
+
+# windows (新: LDをwindresに変更)
 CC = i686-pc-cygwin-gcc
 CCFLAGS = -Wall -I/usr/include/opengl
-LD = $(CC)
+LD = i686-pc-cygwin-windres
 LDFLAGS =
 LIBS = -lm -lglpng -lglut32 -lglu32 -lopengl32
 
 $(TARGET) : $(OBJS)
-	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
+	$(LD) -i $(SRCSRC) clockicon.o
+	$(CC) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
 
 .c.o :
 	$(CC) $(CCFLAGS) -c $<
 
 $(OBJS) : $(HEADERS) Makefile
 
-c :
+c :					# oファイル, exeファイルを消去
 	rm -f $(OBJS) $(TARGET) core *~
 
-oc :
+oc :				# oファイルを消去
 	rm -f $(OBJS) core *~
 
-exec :
+exec :				# exeファイルを消去
 	rm -f $(TARGET) core *~
 
-exe : $(TARGET)
+exe : $(TARGET)		# コード変更を確認して実行する
 	./$(TARGET)
 
-ocexe : $(TARGET)
+ocexe : $(TARGET)	# ocとexeの機能を持つコマンド
 	rm -f $(OBJS) core *~
 	./$(TARGET)

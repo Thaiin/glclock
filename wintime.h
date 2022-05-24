@@ -5,19 +5,19 @@
 #include <math.h>
 
 #define DAYSIZE 3 + 1
-#define SQ 360
+#define SQ 720
 
-typedef struct weekday{
+typedef struct daytime{
 	int hour12;
 	int weekdaynum;
 	char weekday[DAYSIZE];
-} WEEKDAY;
+} DAYTIME;
 
 time_t tt;
 struct tm *ts;
-WEEKDAY wd;
+DAYTIME wd;
 
-void weekdayreturn(WEEKDAY *);
+void weekdayreturn(DAYTIME *);
 void clocktime();
 void glClockHands(int, int);
 void glClockCircle(int, int);
