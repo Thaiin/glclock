@@ -6,6 +6,7 @@ int main(int argc, char **argv){
     glutCreateWindow("clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
+    glutKeyboardFunc(Keyboard);
     glutTimerFunc(500, Timer, 0);
 
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);

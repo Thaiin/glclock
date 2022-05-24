@@ -5,7 +5,7 @@ TARGET = clock.exe
 SRCS = display.c \
 	clock.c \
 	main.c \
-	shape.c 
+	shape.c
 
 SRCSRC = clockicon.rc
 
@@ -17,7 +17,7 @@ HEADERS = wintime.h
 # Linux
 # CC = gcc
 # CCFLAGS = -Wall
-# LD = gcc
+# LD = windres
 # LDFLAGS = 
 # LIBS = -lm -lglpng -lglut -lGLU -lGL
 

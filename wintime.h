@@ -5,7 +5,7 @@
 #include <math.h>
 
 #define DAYSIZE 3 + 1
-#define SQ 720
+#define SQ 12
 
 typedef struct daytime{
 	int hour12;
@@ -25,3 +25,4 @@ void glClockCircle(int, int);
 void Display(void);
 void Reshape(int, int);
 void Timer(int);
+void Keyboard(unsigned char, int, int);

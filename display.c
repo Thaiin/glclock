@@ -21,4 +21,22 @@ void Reshape(int w, int h){
     gluOrtho2D(0, w, 0, h);
     glScaled(1, -1, 1);
     glTranslated(0, -h, 0);
+
+    if(w <= 499 && h <= 399){
+        glutReshapeWindow(500, 400);
+    } else if(w < 500){
+        glutReshapeWindow(500, h);
+    } else if(h < 400){
+        glutReshapeWindow(w, 400);
+    }
+}
+
+void Keyboard(unsigned char key, int x, int y){
+    if((key == 'q') || key == 27){
+        printf("終了\n");
+        exit(0);
+    } else if(key == 't'){
+        printf("テーマ変更\n");
+        
+    }
 }

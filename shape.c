@@ -36,7 +36,7 @@ void glClockCircle(int w, int h){
     glEnd();
 
     for(int j = 0; j < 12; j++){
-        glPointSize(3.0);
+        glPointSize(3.5);
         glBegin(GL_POINTS);      //時計を12分割
         glColor3ub(255, 255, 255);
         glVertex2i(cenw + cirdots * sin((2 * M_PI * j) / 12), cenh - cirdots * cos((2 * M_PI * j) / 12));
@@ -59,6 +59,7 @@ void glClockHands(int w, int h){
     	shorthour_hand = h / 5;
     }
 
+    glLineWidth(2);
 	glBegin(GL_LINES);      //sec
     glColor3ub(255, 255, 255);
     // glColor3ub(0, 0, 0);
@@ -66,6 +67,7 @@ void glClockHands(int w, int h){
     glVertex2i(cenw, cenh);
     glEnd();
 
+    glLineWidth(3);
     glBegin(GL_LINES);      //min
     glColor3ub(255, 255, 255);
     // glColor3ub(0, 0, 0);
@@ -73,10 +75,13 @@ void glClockHands(int w, int h){
     glVertex2i(cenw, cenh);
     glEnd();
 
+    glLineWidth(4);
     glBegin(GL_LINES);      //hour
     glColor3ub(255, 255, 255);
     // glColor3ub(0, 0, 0);
     glVertex2i(cenw + shorthour_hand * sin((2 * M_PI * (3600 * wd.hour12 + 60 * ts->tm_min + ts->tm_sec)) / 43200), cenh - shorthour_hand * cos((2 * M_PI * (3600 * wd.hour12 + 60 * ts->tm_min + ts->tm_sec)) / 43200));
     glVertex2i(cenw, cenh);
     glEnd();
+
+    glLineWidth(1);
 }
