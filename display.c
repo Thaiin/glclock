@@ -1,20 +1,22 @@
 #include "wintime.h"
 
 void Display(void){
+    int r, g, b;
     int w = glutGet(GLUT_WINDOW_WIDTH);
     int h = glutGet(GLUT_WINDOW_HEIGHT);
 
     clocktime();
-
     glClear(GL_COLOR_BUFFER_BIT);
-    glClockCircle(w, h);
-    glClockHands(w, h);
+    glClockCircle(w, h, r, g, b);
+    glClockHands(w, h, r, g, b);
+    glClockHandsLines(w, h, r, g, b);
     glFlush();
     glutSwapBuffers();
 }
 
 void Reshape(int w, int h){
-    // printf("window: width*height = %d x %d\n", w, h);
+    printf("window: width*height = %d x %d\n", w, h);
+    
     glViewport(0, 0, w, h);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -22,11 +24,11 @@ void Reshape(int w, int h){
     glScaled(1, -1, 1);
     glTranslated(0, -h, 0);
 
-    if(w <= 499 && h <= 399){
+    if(w <= 490 && h <= 390){
         glutReshapeWindow(500, 400);
-    } else if(w < 500){
+    } else if(w < 490){
         glutReshapeWindow(500, h);
-    } else if(h < 400){
+    } else if(h < 390){
         glutReshapeWindow(w, 400);
     }
 }
@@ -37,6 +39,6 @@ void Keyboard(unsigned char key, int x, int y){
         exit(0);
     } else if(key == 't'){
         printf("テーマ変更\n");
-        
+        themeChange();
     }
 }

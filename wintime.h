@@ -5,22 +5,23 @@
 #include <math.h>
 
 #define DAYSIZE 3 + 1
-#define SQ 12
+#define SQ 1440
+#define RENEWALTIME 50
 
 typedef struct daytime{
 	int hour12;
 	int weekdaynum;
-	char weekday[DAYSIZE];
 } DAYTIME;
 
 time_t tt;
 struct tm *ts;
 DAYTIME wd;
 
-void weekdayreturn(DAYTIME *);
 void clocktime();
-void glClockHands(int, int);
-void glClockCircle(int, int);
+void glClockCircle(int, int, int, int, int);
+void glClockHandsLines(int, int, int, int, int);
+void glClockHands(int, int, int, int, int);
+void themeChange();
 
 void Display(void);
 void Reshape(int, int);
