@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv){
     glutInit(&argc, argv);
-    glutInitWindowSize(340,  340);
+    glutInitWindowSize(500,  400);
     glutCreateWindow("clock");
     glutDisplayFunc(Display);
     glutReshapeFunc(Reshape);
