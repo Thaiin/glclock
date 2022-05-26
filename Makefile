@@ -2,19 +2,20 @@
 
 TARGET = clock.exe
 
-SRCS = display.c \
+SRCS = callbackfunc.c \
+	display.c \
+	shape.c \
 	clock.c \
-	main.c \
-	shape.c
+	main.c
 
 SRCSRC = clockicon.rc
 
 OBJS = ${SRCS:.c=.o} \
 	clockicon.o
 
-HEADERS = wintime.h
+HEADERS = clocktime.h
 
-# Linux
+# Linux (LDをwindresに変更)
 # CC = gcc
 # CCFLAGS = -Wall
 # LD = windres
@@ -24,7 +25,7 @@ HEADERS = wintime.h
 # $(TARGET) : $(OBJS)
 # 	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
 
-# windows (新: LDをwindresに変更)
+# windows (LDをi686-pc-cygwin-windresに変更)
 CC = i686-pc-cygwin-gcc
 CCFLAGS = -Wall -I/usr/include/opengl
 LD = i686-pc-cygwin-windres

@@ -1,44 +1,50 @@
-#include "wintime.h"
+#include "clocktime.h"
 
-void Display(void){
-    int r, g, b;
-    int w = glutGet(GLUT_WINDOW_WIDTH);
-    int h = glutGet(GLUT_WINDOW_HEIGHT);
-
-    clocktime();
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClockCircle(w, h, r, g, b);
-    glClockHands(w, h, r, g, b);
-    glClockHandsLines(w, h, r, g, b);
-    glFlush();
-    glutSwapBuffers();
+void themeInit(){
+    circle.colormode = BLACKTHEME;
+    circle.r = 0;
+    circle.g = 0;
+    circle.b = 0;
+    hand.colormode = BLACKTHEME;
+    hand.r = 255;
+    hand.g = 255;
+    hand.b = 255;
 }
 
-void Reshape(int w, int h){
-    printf("window: width*height = %d x %d\n", w, h);
-    
-    glViewport(0, 0, w, h);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluOrtho2D(0, w, 0, h);
-    glScaled(1, -1, 1);
-    glTranslated(0, -h, 0);
+void themeChange(){
+    if(circle.colormode != BLACKTHEME){
+        // printf("circle: black, hand & points: white\n");
+        glClearColor(1, 1, 1, 0);
 
+        circle.colormode = BLACKTHEME;
+        circle.r = 0;
+        circle.g = 0;
+        circle.b = 0;
+        hand.colormode = BLACKTHEME;
+        hand.r = 255;
+        hand.g = 255;
+        hand.b = 255;
+    } else {
+        // printf("circle: white, hand & points: black\n");
+        glClearColor(0, 0, 0, 0);
+
+        circle.colormode = DEFAULTTHEME;
+        circle.r = 255;
+        circle.g = 255;
+        circle.b = 255;
+        hand.colormode = DEFAULTTHEME;
+        hand.r = 0;
+        hand.g = 0;
+        hand.b = 0;
+    }
+}
+
+void reshapewin(int w, int h){
     if(w <= 490 && h <= 390){
         glutReshapeWindow(500, 400);
     } else if(w < 490){
         glutReshapeWindow(500, h);
     } else if(h < 390){
         glutReshapeWindow(w, 400);
-    }
-}
-
-void Keyboard(unsigned char key, int x, int y){
-    if((key == 'q') || key == 27){
-        printf("終了\n");
-        exit(0);
-    } else if(key == 't'){
-        printf("テーマ変更\n");
-        themeChange();
     }
 }

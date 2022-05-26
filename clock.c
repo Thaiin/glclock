@@ -1,11 +1,6 @@
-#include "wintime.h"
+#include "clocktime.h"
 
-void Timer(int value){
-	glutPostRedisplay();
-	glutTimerFunc(RENEWALTIME, Timer, 0);
-}
-
-void clocktime(){
+void nowtime(){
 	tt = time(NULL);	// time(&tt);
 	ts = localtime(&tt);
 	wd.weekdaynum = ts->tm_wday;
