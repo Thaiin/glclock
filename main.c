@@ -6,8 +6,7 @@ int main(int argc, char **argv){
     glutCreateWindow("clock");
 
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
-    glClearColor(1, 1, 1, 0);
-
+    
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_POINT_SMOOTH);
     glEnable(GL_POLYGON_SMOOTH);
@@ -20,7 +19,7 @@ int main(int argc, char **argv){
     glutReshapeFunc(Reshape);
     glutKeyboardFunc(Keyboard);
     glutTimerFunc(RENEWALTIME, Timer, 0);
-
+    
     themeInit();
     
     glutMainLoop();

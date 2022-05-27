@@ -5,7 +5,7 @@ TARGET = clock.exe
 SRCS = callbackfunc.c \
 	display.c \
 	shape.c \
-	clock.c \
+	setting.c \
 	main.c
 
 SRCSRC = clockicon.rc

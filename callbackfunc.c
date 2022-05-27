@@ -2,14 +2,14 @@
 
 void Display(void){
     glClear(GL_COLOR_BUFFER_BIT);
-    nowtime();
+    
+    DAYTIME wd = nowtime();
+    SET_POSITION ps = locate();
 
-    int w = glutGet(GLUT_WINDOW_WIDTH);
-    int h = glutGet(GLUT_WINDOW_HEIGHT);
+    glClockCircle(ps);
+    glClockPoints(ps);
+    glClockHands(ps, wd);
 
-    glClockCircle(w, h);
-    glClockHands(w, h);
-    glClockPoints(w, h);
     glFlush();
     glutSwapBuffers();
 }
@@ -35,7 +35,9 @@ void Keyboard(unsigned char key, int x, int y){
         printf("stop\n");
         exit(0);
     } else if(key == 't'){
-        printf("change theme\n");
+        printf("white & black mode\n");
         themeChange();
+    } else if(key == 'T'){
+        printf("color mode\n");
     }
 }

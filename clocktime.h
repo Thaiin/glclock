@@ -1,3 +1,5 @@
+#define _USE_MATH_DEFINES
+
 #include <GL/glut.h>
 #include <GL/glpng.h>
 #include <stdio.h>
@@ -5,28 +7,43 @@
 #include <time.h>
 #include <math.h>
 
-#define DAYSIZE 3 + 1
-#define SQ 1440
-#define RENEWALTIME 50
-#define DEFAULTTHEME 0
+#define SQ 360
+#define RENEWALTIME 100
+
+#define WHITETHEME 0
 #define BLACKTHEME 1
+#define DEFAULTTHEME 2
+
+#define SECPOINT 2
+#define MINPOINT 3
+#define HOURPOINT 4
 
 typedef struct daytime{
-	int hour12;
+	time_t tt;
+	struct tm *ts;
+	int notation12hour;
 	int weekdaynum;
 } DAYTIME;
 
-typedef struct displaysetting{	//defaultの時の針の色
+typedef struct displaysetting{	//color: hands & points & circle
 	int r;
 	int g;
 	int b;
 	int colormode;
 } DISPLAYSETTING;
 
-time_t tt;
-struct tm *ts;
+typedef struct set_position{
+	int w;
+	int h;
+	int cir;
+	int cirdots;
+	int cenw;
+	int cenh;
+	int sec_hand;
+	int longmin_hand;
+	int shorthour_hand;
+} SET_POSITION;
 
-DAYTIME wd;
 DISPLAYSETTING circle;
 DISPLAYSETTING hand;
 
@@ -34,14 +51,17 @@ DISPLAYSETTING hand;
 void themeInit();
 void themeChange();
 void reshapewin(int, int);
+void inputNumber();
 
-// clock.c
-void nowtime();
+// setting.c
+SET_POSITION locate();
+DAYTIME nowtime();
+
 
 // shape.c
-void glClockCircle(int, int);
-void glClockPoints(int, int);
-void glClockHands(int, int);
+void glClockCircle(SET_POSITION);
+void glClockPoints(SET_POSITION);
+void glClockHands(SET_POSITION, DAYTIME);
 
 // callbackfunc.c
 void Display(void);
