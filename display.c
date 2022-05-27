@@ -1,4 +1,5 @@
 #include "clocktime.h"
+#include "prototype.h"
 
 void themeInit(){
     glClearColor(0.9, 0.9, 0.9, 0);

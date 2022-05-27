@@ -1,4 +1,5 @@
 #include "clocktime.h"
+#include "prototype.h"
 
 void glClockCircle(SET_POSITION ps){
     glBegin(GL_POLYGON);    //時計の内側の色

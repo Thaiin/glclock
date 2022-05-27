@@ -1,4 +1,5 @@
 #include "clocktime.h"
+#include "prototype.h"
 
 int main(int argc, char **argv){
     glutInit(&argc, argv);
@@ -6,7 +7,6 @@ int main(int argc, char **argv){
     glutCreateWindow("clock");
 
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
-    
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_POINT_SMOOTH);
     glEnable(GL_POLYGON_SMOOTH);

@@ -1,4 +1,5 @@
 #include "clocktime.h"
+#include "prototype.h"
 
 void Display(void){
     glClear(GL_COLOR_BUFFER_BIT);
