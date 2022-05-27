@@ -1,4 +1,3 @@
-#include "clocktime.h"
 #include "prototype.h"
 
 int main(int argc, char **argv){

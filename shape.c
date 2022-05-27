@@ -1,4 +1,3 @@
-#include "clocktime.h"
 #include "prototype.h"
 
 void glClockCircle(SET_POSITION ps){
@@ -45,21 +44,21 @@ void glClockHands(SET_POSITION ps, DAYTIME wd){
     glLineWidth(SECPOINT);
 	glBegin(GL_LINES);      //sec
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.sec_hand * sin((2 * M_PI * wd.ts->tm_sec) / 60), ps.cenh - ps.sec_hand * cos((2 * M_PI * wd.ts->tm_sec) / 60));
+    glVertex2i(x_sec(ps.cenw, ps.sec_hand, wd.ts->tm_sec), y_sec(ps.cenh, ps.sec_hand, wd.ts->tm_sec));
     glVertex2i(ps.cenw, ps.cenh);
     glEnd();
 
     glLineWidth(MINPOINT);
     glBegin(GL_LINES);      //min
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.longmin_hand * sin((2 * M_PI * (60 * wd.ts->tm_min + wd.ts->tm_sec)) / 3600), ps.cenh - ps.longmin_hand * cos((2 * M_PI * (60 * wd.ts->tm_min + wd.ts->tm_sec)) / 3600));
+    glVertex2i(x_min(ps.cenw, ps.longmin_hand, wd.ts->tm_sec, wd.ts->tm_min), y_min(ps.cenh, ps.longmin_hand, wd.ts->tm_sec, wd.ts->tm_min));
     glVertex2i(ps.cenw, ps.cenh);
     glEnd();
 
     glLineWidth(HOURPOINT);
     glBegin(GL_LINES);      //hour
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.shorthour_hand * sin((2 * M_PI * (3600 * wd.notation12hour + 60 * wd.ts->tm_min + wd.ts->tm_sec)) / 43200), ps.cenh - ps.shorthour_hand * cos((2 * M_PI * (3600 * wd.notation12hour + 60 * wd.ts->tm_min + wd.ts->tm_sec)) / 43200));
+    glVertex2i(x_hour(ps.cenw, ps.shorthour_hand, wd.ts->tm_sec, wd.ts->tm_min, wd.notation12hour), y_hour(ps.cenh, ps.shorthour_hand, wd.ts->tm_sec, wd.ts->tm_min, wd.notation12hour));
     glVertex2i(ps.cenw, ps.cenh);
     glEnd();
 
@@ -67,19 +66,19 @@ void glClockHands(SET_POSITION ps, DAYTIME wd){
     glPointSize(SECPOINT);
     glBegin(GL_POINTS);      //secpoint
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.sec_hand * sin((2 * M_PI * wd.ts->tm_sec) / 60), ps.cenh - ps.sec_hand * cos((2 * M_PI * wd.ts->tm_sec) / 60));
+    glVertex2i(x_sec(ps.cenw, ps.sec_hand, wd.ts->tm_sec), y_sec(ps.cenh, ps.sec_hand, wd.ts->tm_sec));
     glEnd();
 
     glPointSize(MINPOINT);
     glBegin(GL_POINTS);      //minpoint
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.longmin_hand * sin((2 * M_PI * (60 * wd.ts->tm_min + wd.ts->tm_sec)) / 3600), ps.cenh - ps.longmin_hand * cos((2 * M_PI * (60 * wd.ts->tm_min + wd.ts->tm_sec)) / 3600));
+    glVertex2i(x_min(ps.cenw, ps.longmin_hand, wd.ts->tm_sec, wd.ts->tm_min), y_min(ps.cenh, ps.longmin_hand, wd.ts->tm_sec, wd.ts->tm_min));
     glEnd();
 
     glPointSize(HOURPOINT);
     glBegin(GL_POINTS);      //hourpoint
     glColor3ub(hand.r, hand.g, hand.b);
-    glVertex2i(ps.cenw + ps.shorthour_hand * sin((2 * M_PI * (3600 * wd.notation12hour + 60 * wd.ts->tm_min + wd.ts->tm_sec)) / 43200), ps.cenh - ps.shorthour_hand * cos((2 * M_PI * (3600 * wd.notation12hour + 60 * wd.ts->tm_min + wd.ts->tm_sec)) / 43200));
+    glVertex2i(x_hour(ps.cenw, ps.shorthour_hand, wd.ts->tm_sec, wd.ts->tm_min, wd.notation12hour), y_hour(ps.cenh, ps.shorthour_hand, wd.ts->tm_sec, wd.ts->tm_min, wd.notation12hour));
     glEnd();
 
     glPointSize(8);

@@ -1,4 +1,3 @@
-#include "clocktime.h"
 #include "prototype.h"
 
 SET_POSITION locate(){
