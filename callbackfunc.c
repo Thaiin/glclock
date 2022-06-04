@@ -1,15 +1,23 @@
-#include "prototype.h"
+#include "include.h"
 
 void Display(void){
     glClear(GL_COLOR_BUFFER_BIT);
     
     DAYTIME wd = nowtime();
-    SET_POSITION ps = locate();
+    SET_POSITION sp = locate();
+    
+    glClockCircle(sp);
+    glClockPoints(sp);
 
-    glClockCircle(ps);
-    glClockPoints(ps);
-    glClockHands(ps, wd);
-
+    if (OPERATING_STATUS == MODE2){
+        glClockSmallCircle(sp);
+        glClockSmallPoints(sp);
+        glClockSmallHands(sp, wd);
+    } else {
+        glClockHands(sp, wd);
+    }
+    inputTimeNumber(wd);
+    
     glFlush();
     glutSwapBuffers();
 }
@@ -32,12 +40,19 @@ void Timer(int value){
 
 void Keyboard(unsigned char key, int x, int y){
     if((key == 'q') || key == 27){
-        printf("stop\n");
+        // printf("stop\n");
         exit(0);
-    } else if(key == 't'){
-        printf("white & black mode\n");
+    }
+    else if(key == 't'){
+        // printf("white & black mode\n");
         themeChange();
-    } else if(key == 'T'){
-        printf("color mode\n");
+    }
+    else if(key == '1'){
+        // printf("mode1\n");
+        operatingStatusChange(MODE1);
+    }
+    else if(key == '2'){
+        // printf("mode2\n");
+        operatingStatusChange(MODE2);
     }
 }

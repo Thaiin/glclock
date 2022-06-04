@@ -13,7 +13,7 @@ SRCSRC = clockicon.rc
 OBJS = ${SRCS:.c=.o} \
 	clockicon.o
 
-HEADERS = prototype.h
+HEADERS = include.h
 
 # Linux (LDをwindresに変更)
 # CC = gcc
