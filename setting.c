@@ -23,8 +23,8 @@ SET_POSITION locate(){
         sp.hour_hand = sp.h / 5;
     }
     sp.smallcir = sp.cir / 5;
-    sp.minicircenw = (sp.cenw + (sp.cenw + sp.cirdots * sin((2 * M_PI * 180) / SQ))) / 2;
-    sp.minicircenh = (sp.cenh + (sp.cenh + sp.cirdots * cos((2 * M_PI * 180) / SQ))) / 2;
+    sp.sec_minicenw = (sp.cenw + (sp.cenw + sp.cirdots * sin((2 * M_PI * 120) / SQ))) / 2;
+    sp.sec_minicenh = (sp.cenh + (sp.cenh + sp.cirdots * cos((2 * M_PI * 120) / SQ))) / 2;
 
     return sp;
 }
@@ -98,6 +98,7 @@ void operatingStatusChange(int num){
         OPERATING_STATUS = MODE1;
     }
 }
+
 
 double x_sec(int w, int hand, int sec){
     return (w + hand * sin((2 * M_PI * sec / 60)));

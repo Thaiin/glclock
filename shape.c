@@ -17,14 +17,16 @@ void glClockCircle(SET_POSITION sp){
 }
 
 void glClockSmallCircle(SET_POSITION sp){
+    int smallcir = 120;
     glLineWidth(SECPOINT);
     glBegin(GL_LINE_LOOP);  //時計の外側の線
     glColor3ub(hand.r, hand.g, hand.b);
-    for(int i = 0; i < SQ; i++){
-        glVertex2i(sp.minicircenw + sp.smallcir * sin((2 * M_PI * i) / SQ), sp.minicircenh - sp.smallcir * cos((2 * M_PI * i) / SQ));
+    for(int i = 0; i < smallcir; i++){
+        glVertex2i(sp.sec_minicenw + sp.smallcir * sin((2 * M_PI * i) / smallcir), sp.sec_minicenh - sp.smallcir * cos((2 * M_PI * i) / smallcir));
     }
     glEnd();
 }
+
 
 void glClockPoints(SET_POSITION sp){
     for(int i = 0; i < 60; i++){
@@ -42,23 +44,20 @@ void glClockPoints(SET_POSITION sp){
         glVertex2i(sp.cenw + sp.cirdots * sin((2 * M_PI * i) / 12), sp.cenh - sp.cirdots * cos((2 * M_PI * i) / 12));
     }
     glEnd();
-
-    // glPointSize(6.0);
-    // glBegin(GL_POINTS);      //時計を12分割
-    // glColor3ub(hand.r, hand.g, hand.b);
-    // glVertex2i(sp.cenw, sp.cenh);
-    // glEnd();
 }
 
 void glClockSmallPoints(SET_POSITION sp){
+    int smalldot = 5;
+
     for(int i = 0; i < 6; i++){
-        glPointSize(4);
+        glPointSize(3);
         glBegin(GL_POINTS);
         glColor3ub(hand.r, hand.g, hand.b);
-        glVertex2i(sp.minicircenw + (sp.smallcir - 3) * sin((2 * M_PI * i) / 6), sp.minicircenh - (sp.smallcir - 3) * cos((2 * M_PI * i) / 6));
+        glVertex2i(sp.sec_minicenw + (sp.smallcir - smalldot) * sin((2 * M_PI * i) / 6), sp.sec_minicenh - (sp.smallcir - smalldot) * cos((2 * M_PI * i) / 6));
     }
     glEnd();
 }
+
 
 void glClockHands(SET_POSITION sp, DAYTIME wd){
     secHandDrawing(sp.cenw, sp.cenh, sp.sec_hand, wd);
@@ -73,8 +72,8 @@ void glClockHands(SET_POSITION sp, DAYTIME wd){
 }
 
 void glClockSmallHands(SET_POSITION sp, DAYTIME wd){
-    secHandDrawing(sp.minicircenw, sp.minicircenh, sp.smallcir, wd);
-    centerPointDrawing(sp.minicircenw, sp.minicircenh);
+    secHandDrawing(sp.sec_minicenw, sp.sec_minicenh, sp.smallcir, wd);
+    centerPointDrawing(sp.sec_minicenw, sp.sec_minicenh);
 
     minHandDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
     hourHandDrawing(sp.cenw, sp.cenh, sp.hour_hand, wd);

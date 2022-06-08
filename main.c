@@ -1,8 +1,6 @@
 #include "include.h"
 
 int main(int argc, char **argv){
-    srand(12345);
-
     glutInit(&argc, argv);
     glutInitWindowSize(500,  400);
     glutCreateWindow("clock");

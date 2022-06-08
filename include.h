@@ -13,8 +13,8 @@
 #define MODE1 1
 #define MODE2 2
 
-#define WINDOW_WIDTHSIZE 600
-#define WINDOW_HEIGHTSIZE 500
+#define WINDOW_WIDTHSIZE 500
+#define WINDOW_HEIGHTSIZE 400
 
 #define WHITETHEME 0
 #define BLACKTHEME 1
@@ -49,8 +49,8 @@ typedef struct set_position{
 	int cenh;
 	int cir;
 	int smallcir;
-	int minicircenw;
-	int minicircenh;
+	int sec_minicenw;
+	int sec_minicenh;
 	int cirdots;
 	int sec_hand;
 	int min_hand;
