@@ -22,9 +22,10 @@ SET_POSITION locate(){
         sp.min_hand = sp.h / 4;
         sp.hour_hand = sp.h / 5;
     }
+
     sp.smallcir = sp.cir / 5;
-    sp.sec_minicenw = (sp.cenw + (sp.cenw + sp.cirdots * sin((2 * M_PI * 120) / SQ))) / 2;
-    sp.sec_minicenh = (sp.cenh + (sp.cenh + sp.cirdots * cos((2 * M_PI * 120) / SQ))) / 2;
+    sp.sec_minicenw = (sp.cenw + (sp.cenw + (sp.cirdots * 5 / 6) * sin((2 * M_PI * 130) / SQ))) / 2;
+    sp.sec_minicenh = (sp.cenh + (sp.cenh + (sp.cirdots * 5 / 6) * cos((2 * M_PI * 130) / SQ))) / 2;
 
     return sp;
 }
@@ -45,45 +46,58 @@ DAYTIME nowtime(){
 	return wd;
 }
 
+
 void themeInit(){
     glClearColor(0.9, 0.9, 0.9, 0);
 
-    circle.colormode = WHITETHEME;
+    circle.colormode = THEME1;
     circle.r = WHITERGB;
     circle.g = WHITERGB;
     circle.b = WHITERGB;
-    hand.colormode = WHITETHEME;
+    hand.colormode = THEME1;
     hand.r = BLACKRGB;
     hand.g = BLACKRGB;
     hand.b = BLACKRGB;
+    minihand.colormode = THEME1;
+    minihand.r = SEC_MINIHAND1_R;
+    minihand.g = SEC_MINIHAND1_G;
+    minihand.b = SEC_MINIHAND1_B;
 }
 
 void themeChange(){
-    if (circle.colormode != WHITETHEME){
+    if (circle.colormode != THEME1){
         // printf("circle: white, hand & points: black\n");
         glClearColor(0.9, 0.9, 0.9, 0);
 
-        circle.colormode = WHITETHEME;
+        circle.colormode = THEME1;
         circle.r = WHITERGB;
         circle.g = WHITERGB;
         circle.b = WHITERGB;
-        hand.colormode = WHITETHEME;
+        hand.colormode = THEME1;
         hand.r = BLACKRGB;
         hand.g = BLACKRGB;
         hand.b = BLACKRGB;
+        minihand.colormode = THEME1;
+        minihand.r = SEC_MINIHAND1_R;
+        minihand.g = SEC_MINIHAND1_G;
+        minihand.b = SEC_MINIHAND1_B;
     }
     else {
         // printf("circle: black, hand & points: white\n");
         glClearColor(0.1, 0.1, 0.1, 0);
 
-        circle.colormode = BLACKTHEME;
+        circle.colormode = THEME2;
         circle.r = BLACKRGB;
         circle.g = BLACKRGB;
         circle.b = BLACKRGB;
-        hand.colormode = BLACKTHEME;
+        hand.colormode = THEME2;
         hand.r = WHITERGB;
         hand.g = WHITERGB;
         hand.b = WHITERGB;
+        minihand.colormode = THEME2;
+        minihand.r = SEC_MINIHAND2_R;
+        minihand.g = SEC_MINIHAND2_G;
+        minihand.b = SEC_MINIHAND2_B;
     }
 }
 

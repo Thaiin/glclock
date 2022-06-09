@@ -30,20 +30,16 @@ void glClockSmallCircle(SET_POSITION sp){
 
 void glClockPoints(SET_POSITION sp){
     for(int i = 0; i < 60; i++){
-        glPointSize(2.0);
+        if(i % 5 == 0){         //時計の1時間の境目を見やすくするために12分する
+            glPointSize(6);
+        } else {
+            glPointSize(2);
+        }
         glBegin(GL_POINTS);      //時計を60分割
         glColor3ub(hand.r, hand.g, hand.b);
         glVertex2i(sp.cenw + sp.cirdots * sin((2 * M_PI * i) / 60), sp.cenh - sp.cirdots * cos((2 * M_PI * i) / 60));
+        glEnd();
     }
-    glEnd();
-
-    for(int i = 0; i < 12; i++){
-        glPointSize(6.0);
-        glBegin(GL_POINTS);      //時計を12分割
-        glColor3ub(hand.r, hand.g, hand.b);
-        glVertex2i(sp.cenw + sp.cirdots * sin((2 * M_PI * i) / 12), sp.cenh - sp.cirdots * cos((2 * M_PI * i) / 12));
-    }
-    glEnd();
 }
 
 void glClockSmallPoints(SET_POSITION sp){
@@ -68,26 +64,28 @@ void glClockHands(SET_POSITION sp, DAYTIME wd){
     minPointDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
     hourPointDrawing(sp.cenw, sp.cenh, sp.hour_hand, wd);
 
-    centerPointDrawing(sp.cenw, sp.cenh);
+    centerPointDrawing(sp.cenw, sp.cenh, CENTERPOINT);
 }
 
 void glClockSmallHands(SET_POSITION sp, DAYTIME wd){
     secHandDrawing(sp.sec_minicenw, sp.sec_minicenh, sp.smallcir, wd);
-    centerPointDrawing(sp.sec_minicenw, sp.sec_minicenh);
+    centerPointDrawing(sp.sec_minicenw, sp.sec_minicenh, MINI_CENTERPOINT);
 
-    minHandDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
-    hourHandDrawing(sp.cenw, sp.cenh, sp.hour_hand, wd);
+    // minをsec_handの長さ, hourをmin_handの長さにする
+    minHandDrawing(sp.cenw, sp.cenh, sp.sec_hand, wd);
+    hourHandDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
 
-    minPointDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
-    hourPointDrawing(sp.cenw, sp.cenh, sp.hour_hand, wd);
+    minPointDrawing(sp.cenw, sp.cenh, sp.sec_hand, wd);
+    hourPointDrawing(sp.cenw, sp.cenh, sp.min_hand, wd);
 
-    centerPointDrawing(sp.cenw, sp.cenh);
+    centerPointDrawing(sp.cenw, sp.cenh, CENTERPOINT);
 }
 
 
 void secHandDrawing(int cenw, int cenh, int sec_hand, DAYTIME wd){
     glLineWidth(SECPOINT);
 	glBegin(GL_LINES);      //sec
+
     glColor3ub(hand.r, hand.g, hand.b);
     glVertex2i(x_sec(cenw, sec_hand, wd.ts->tm_sec), y_sec(cenh, sec_hand, wd.ts->tm_sec));
     glVertex2i(cenw, cenh);
@@ -136,8 +134,8 @@ void hourPointDrawing(int cenw, int cenh, int hour_hand, DAYTIME wd){
     glEnd();
 }
 
-void centerPointDrawing(int cenw, int cenh){
-    glPointSize(CENTERPOINT);
+void centerPointDrawing(int cenw, int cenh, int center){
+    glPointSize(center);
     glBegin(GL_POINTS);      //centerpoint
     glColor3ub(hand.r, hand.g, hand.b);
     glVertex2i(cenw, cenh);

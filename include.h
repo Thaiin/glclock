@@ -12,21 +12,31 @@
 
 #define MODE1 1
 #define MODE2 2
+#define MODE3 3
 
 #define WINDOW_WIDTHSIZE 500
 #define WINDOW_HEIGHTSIZE 400
-
-#define WHITETHEME 0
-#define BLACKTHEME 1
-#define DEFAULTTHEME 2
-
-#define WHITERGB 240
-#define BLACKRGB 20
 
 #define SECPOINT 2
 #define MINPOINT 3
 #define HOURPOINT 4
 #define CENTERPOINT 8
+#define MINI_CENTERPOINT 4
+
+#define THEME1 0    // white
+#define THEME2 1    // black
+#define WHITERGB 240    // white
+#define BLACKRGB 20     // black
+
+// theme1 で white がメイン時のカラー
+#define SEC_MINIHAND1_R 66
+#define SEC_MINIHAND1_G 114
+#define SEC_MINIHAND1_B 222
+
+// theme2 で black がメイン時のカラー
+#define SEC_MINIHAND2_R 222
+#define SEC_MINIHAND2_G 174
+#define SEC_MINIHAND2_B 66
 
 typedef struct daytime{
 	time_t tt;
@@ -60,6 +70,7 @@ typedef struct set_position{
 // 色を決める構造体の宣言
 DISPLAYSETTING circle;
 DISPLAYSETTING hand;
+DISPLAYSETTING minihand;
 DISPLAYSETTING cal;
 
 // 時計の表示を変更するための引数
@@ -75,6 +86,8 @@ void Keyboard(unsigned char, int, int);
 void reshapewin(int, int);
 void printText(int, int, char*);
 void inputTimeNumber(DAYTIME);
+void printClockMode1(SET_POSITION, DAYTIME);
+void printClockMode2(SET_POSITION, DAYTIME);
 
 // shape.c
 void glClockCircle(SET_POSITION);
@@ -91,7 +104,7 @@ void hourHandDrawing(int, int, int, DAYTIME);
 void secPointDrawing(int, int, int, DAYTIME);
 void minPointDrawing(int, int, int, DAYTIME);
 void hourPointDrawing(int, int, int, DAYTIME);
-void centerPointDrawing(int, int);
+void centerPointDrawing(int, int, int);
 
 // setting.c
 SET_POSITION locate();

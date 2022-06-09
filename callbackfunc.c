@@ -5,18 +5,14 @@ void Display(void){
     
     DAYTIME wd = nowtime();
     SET_POSITION sp = locate();
-    
-    glClockCircle(sp);
-    glClockPoints(sp);
+
+    inputTimeNumber(wd);
 
     if (OPERATING_STATUS == MODE2){
-        glClockSmallCircle(sp);
-        glClockSmallPoints(sp);
-        glClockSmallHands(sp, wd);
+        printClockMode2(sp, wd);
     } else {
-        glClockHands(sp, wd);
+        printClockMode1(sp, wd);
     }
-    inputTimeNumber(wd);
     
     glFlush();
     glutSwapBuffers();
@@ -44,7 +40,6 @@ void Keyboard(unsigned char key, int x, int y){
         exit(0);
     }
     else if(key == 't'){
-        // printf("white & black mode\n");
         themeChange();
     }
     else if(key == '1'){
@@ -54,5 +49,9 @@ void Keyboard(unsigned char key, int x, int y){
     else if(key == '2'){
         // printf("mode2\n");
         operatingStatusChange(MODE2);
+    }
+    else if(key == '3'){
+        // printf("mode3\n");
+        operatingStatusChange(MODE3);
     }
 }

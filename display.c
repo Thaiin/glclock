@@ -29,3 +29,17 @@ void inputTimeNumber(DAYTIME wd){
     glColor3ub(hand.r, hand.g, hand.b);
     printText(20, 40, s);
 }
+
+void printClockMode1(SET_POSITION sp, DAYTIME wd){
+    glClockCircle(sp);
+    glClockPoints(sp);
+    glClockHands(sp, wd);
+}
+
+void printClockMode2(SET_POSITION sp, DAYTIME wd){
+    glClockCircle(sp);
+    glClockPoints(sp);
+    glClockSmallCircle(sp);
+    glClockSmallPoints(sp);
+    glClockSmallHands(sp, wd);
+}
