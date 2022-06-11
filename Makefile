@@ -3,9 +3,11 @@
 TARGET = clock.exe
 
 SRCS = callbackfunc.c \
-	display.c \
-	shape.c \
+	generic_func.c \
+	printclock.c \
+	printtime.c \
 	setting.c \
+	math.c \
 	main.c
 
 SRCSRC = clockicon.rc
@@ -13,17 +15,10 @@ SRCSRC = clockicon.rc
 OBJS = ${SRCS:.c=.o} \
 	clockicon.o
 
-HEADERS = include.h
-
-# Linux (LDをwindresに変更)
-# CC = gcc
-# CCFLAGS = -Wall
-# LD = windres
-# LDFLAGS = 
-# LIBS = -lm -lglpng -lglut -lGLU -lGL
-
-# $(TARGET) : $(OBJS)
-# 	$(LD) $(OBJS) $(LDFLAGS) -o $(TARGET) $(LIBS)
+HEADERS = define.h \
+	includefile.h \
+	struct.h \
+	prototype.h
 
 # windows (LDをi686-pc-cygwin-windresに変更)
 CC = i686-pc-cygwin-gcc

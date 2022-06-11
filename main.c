@@ -1,18 +1,17 @@
-#include "include.h"
+#include "prototype.h"
 
 int main(int argc, char **argv){
     glutInit(&argc, argv);
     glutInitWindowSize(500,  400);
-    glutCreateWindow("clock");
+    createWindowName();
 
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
     glEnable(GL_LINE_SMOOTH);
     glEnable(GL_POINT_SMOOTH);
     glEnable(GL_POLYGON_SMOOTH);
     glEnable(GL_BLEND);
 
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glHint(GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
 
     glutDisplayFunc(Display);
@@ -20,8 +19,10 @@ int main(int argc, char **argv){
     glutKeyboardFunc(Keyboard);
     glutTimerFunc(RENEWALTIME, Timer, 0);
     
-    operatingStatusInit();
-    themeInit();
+    DAYTIME nt = nowtime();
+    theme_Init(nt.ts->tm_hour);
+    operatingStatus_Init();
+    processingBar_Init();
     
     glutMainLoop();
 
