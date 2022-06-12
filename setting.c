@@ -117,54 +117,49 @@ void timeDisplayChanged_Change(){
 }
 
 void theme_Init(int hour){
-    if (hour < 6 || hour > 18){     //18 ~ 6時まで
+    if (hour < 6 || hour > 17){     //18 ~ 6時まで
         darkTheme();
+        COLOR_MODE = BLACK;
 	} else {
         whiteTheme();
+        COLOR_MODE = WHITE;
 	}
 }
 
 void theme_Change(){
-    if (circle.colormode != THEME1){
+    if (COLOR_MODE != WHITE){
         whiteTheme();
-    }
-    else {
+        COLOR_MODE = WHITE;
+    } else {
         darkTheme();
+        COLOR_MODE = BLACK;
     }
 }
 
 
 void darkTheme(){
-    // printf("circle: black, hand & points: white\n");
     glClearColor(0, 0, 0.05, 0);
 
-    circle.colormode = THEME2;
     circle.r = BLACKR;
     circle.g = BLACKG;
     circle.b = BLACKB;
-    hand.colormode = THEME2;
     hand.r = WHITER;
     hand.g = WHITEG;
     hand.b = WHITEB;
-    sechand.colormode = THEME2;
     sechand.r = SEC_MINIHAND2_R;
     sechand.g = SEC_MINIHAND2_G;
     sechand.b = SEC_MINIHAND2_B;
 }
 
 void whiteTheme(){
-    // printf("circle: white, hand & points: black\n");
     glClearColor(0.8, 0.8, 0.82, 0);
 
-    circle.colormode = THEME1;
     circle.r = WHITER;
     circle.g = WHITEG;
     circle.b = WHITEB;
-    hand.colormode = THEME1;
     hand.r = BLACKR;
     hand.g = BLACKG;
     hand.b = BLACKB;
-    sechand.colormode = THEME1;
     sechand.r = SEC_MINIHAND1_R;
     sechand.g = SEC_MINIHAND1_G;
     sechand.b = SEC_MINIHAND1_B;

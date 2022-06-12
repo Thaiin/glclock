@@ -11,7 +11,6 @@ typedef struct displaysetting{
 	int r;
 	int g;
 	int b;
-	int colormode;
 } DISPLAYSETTING;
 
 typedef struct set_wh{

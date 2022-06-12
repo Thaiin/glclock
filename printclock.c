@@ -62,12 +62,8 @@ void glClockPoints(SET_WH wh, SET_POSITION sp){
 
 void glClockSmallPoints(double cenw, double cenh, int scdots, int dotsnum){
     for(int i = 0; i < dotsnum; i++){
-        glPointSize(4);
-        glBegin(GL_POINTS);
-        glColor3ub(hand.r, hand.g, hand.b);
-        glVertex2i(centerToArc_x(cenw, scdots, i, dotsnum), centerToArc_y(cenh, scdots, i, dotsnum));
+        pointDrawing(centerToArc_x(cenw, scdots, i, dotsnum), centerToArc_y(cenh, scdots, i, dotsnum), 4, 0);
     }
-    glEnd();
 }
 
 
@@ -94,6 +90,7 @@ void glClockHands_MiniHands(SET_WH wh, SET_POSITION sp, MINI_CIRCLECENTER mc, DA
 
     pointDrawing(wh.cenw, wh.cenh, CENTERPOINT, 0);
 }
+
 
 void secHandDrawing(int cenw, int cenh, int sec_hand, DAYTIME wd){
     int x = x_sec(cenw, sec_hand, wd.ts->tm_sec);
@@ -131,13 +128,9 @@ void reverseHandDrawing(int cenw, int cenh, int hand, DAYTIME wd){
     int smax = 60;
     int sc = wd.ts->tm_sec + smax / 2;
 
-    // if(sc > 60){
-    //     sc -= smax;
-    // }
     int x = centerToArc_x(cenw, hand / 5, sc, smax);
     int y = centerToArc_y(cenh, hand / 5, sc, smax);
 
     linesDrawing(x, y, cenw, cenh, SECPOINT, 1);
     pointDrawing(x, y, SECPOINT, 1);
-    
 }

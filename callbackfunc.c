@@ -23,6 +23,7 @@ void Display(void){
     } else {
         printClockMode1(wh, sp, wd);
     }
+    
     glFlush();
     glutSwapBuffers();
 }

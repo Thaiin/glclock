@@ -3,11 +3,11 @@
 TARGET = clock.exe
 
 SRCS = callbackfunc.c \
-	generic_func.c \
+	genericfunc.c \
 	printclock.c \
 	printtime.c \
 	setting.c \
-	math.c \
+	arc.c \
 	main.c
 
 SRCSRC = clockicon.rc
